@@ -111,13 +111,14 @@ jobs:
         run: |
           ls
 
+      - name: create zip
+        run: |
+          zip dxcompiler_build.zip DirectXShaderCompilerBinary-LICENSE-LLVM.txt dxcompiler.dll libdxcompiler.dylib libdxcompiler.so
+
       - name: create gh release
         uses: softprops/action-gh-release@v2
         with:
           name: ${{ github.event.inputs.tag }}
           tag_name: ${{ github.event.inputs.tag }}
           files: |
-            DirectXShaderCompilerBinary-LICENSE-LLVM.txt
-            dxcompiler.dll
-            libdxcompiler.dylib
-            libdxcompiler.so
+            dxcompiler_build.zip
